@@ -1,0 +1,32 @@
+
+Next, I implemented the Norm_FindPoint() function which took in the number
+of rows, number of columns, the DArray of points, the solution vector, and
+the verbose flag. The matrices (A,ATA,AT) and vectors (ATB,b,tau,res) were
+already created and had space allocated for them so I implemented encoding
+matrix A and vector b. First, matrix A was encoded with 1's in the fist
+column with a for loop that looped through the rows and put a 1 in the first
+column of each row. The gsl_matrix_set() function was used. Then matrix A was
+encoded with the x data from the Payload by looping through each row and 
+column. Vector b was encoded with y data from the payload by looping through
+all the rows. The Ax=b and QR decomposition math was implemented next. Five
+of the gsl functions were used. A and b were transposed, then the linear
+algebra functions were called to do the actual decomposition and put the 
+solution into the solution vector. Verbose mode was handled by printing each
+vector and matrix if verbose was 1 and it printed the matrices and vectors
+after the math was done. After all of this, each matrix and vector was freed
+The next step was to implement correction.c to be able to create a correction 
+polynomial from the results of the data fitting code. Horner's factorization
+was used to implement this section. First, a 7x8 polynomial was created with 
+just values of zeros. The evalPoly() function returned the solution to the 
+polynomial using Horner's method. It was just one line that did the calculation.
+Horner's method is used to approximate the roots of polynomials. In the 
+function, depending on the order of the polynomial, it would go through that
+row according and each index of the polynomial to get the solution. A macro
+was used for the order of the polynomial so when the file was compiled, the
+order had to be specified. In the main of correction.c, the command line
+arguments were read and a temporary variable was created and set equal to the
+evalPoly() function. The temp was rounded by 0.5 and the ideal data was passed
+through without modification this way. After correction.c was compiled, the
+error could be calculated from ideal with 
+./realDevice | ./correction | ./detError
+using the gsl free functions. 

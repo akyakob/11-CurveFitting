@@ -1,0 +1,52 @@
+Sample results, your values may be different
+
+Sample results for: make base
+Running the test with no correction
+Max/Min/Ave/Mid Percent Error = 25.30% / 2.07% / -16.08% / 16.44%
+Max/Min/Ave count error    = 370 / 20 / -269
+Norm of residuals error  = 17798.98
+R squared error          = 0.94289907
+Pearson's Correlation    = 0.99796527
+
+    
+Sample results for: make correction
+Running the test with correction
+Max/Min/Ave/Mid Percent Error = 43.21% / 0.00% / -0.72% / 0.14%
+Max/Min/Ave count error    = 135 / 0 / 0
+Norm of residuals error  = 1175.32
+R squared error          = 0.99971998
+Pearson's Correlation    = 0.99986115
+
+
+Partial sample of myplot input data
+81 101	81 116
+82 102	82 116
+83 104	83 118
+84 105	84 118
+85 106	85 119
+87 107	87 120
+88 109	88 121
+89 110	89 122
+90 111	90 123
+91 112	91 123
+92 114	92 125
+
+
+Sample results from valgrind:
+==352== Memcheck, a memory error detector
+==352== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==352== Using Valgrind-3.14.0.SVN and LibVEX; rerun with -h for copyright info
+==352== Command: ./hw12 -order 2 -points data.txt
+==352== 
+Least Squares Solution via Norm factorization:
+  f(x) =  -34.5329 + 1.32088x + -6.44619e-05x^2 
+
+==352== 
+==352== HEAP SUMMARY:
+==352==     in use at exit: 0 bytes in 0 blocks
+==352==   total heap usage: 64 allocs, 64 frees, 1,464,248 bytes allocated
+==352== 
+==352== All heap blocks were freed -- no leaks are possible
+==352== 
+==352== For counts of detected and suppressed errors, rerun with: -v
+==352== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
